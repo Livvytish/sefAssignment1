@@ -9,20 +9,23 @@ public class createStaffRequest
 
 		public static void main(String[] args)
 			{
-
+				
+				//**NEED TO CREATE REQUEST CONSTRUCTOR AND ASSIGN USER INPUT TO OBJECT**
 				@SuppressWarnings("resource")
 				Scanner scan = new Scanner(System.in);
 
 				// System needs to allocate reqownerID and req timestamp to
-				// request
+				// request, not sure how to achieve this.
 
 				System.out.println("Create Staff Request");
+				//user enters course ID
 				System.out.println("Enter Course: ");
 				String reqCourseID = scan.nextLine();
 
 				String reqJobTitle = "";
-
-				// https://stackoverflow.com/questions/20681616/java-creating-a-menu-loop
+				
+				//user selects job title
+				// Following section referenced and inspired by https://stackoverflow.com/questions/20681616/java-creating-a-menu-loop
 				// set choiceentry to -1, this will make it to enter while loop
 				int choiceentry = -1;
 
@@ -64,10 +67,11 @@ public class createStaffRequest
 
 				System.out.println(reqJobTitle);
 
-
+				//user enters date, not 100% sure about this approach
 				// https://coderanch.com/t/598292/java/date-input-user-java
 
-				// https://stackoverflow.com/questions/27580655/how-to-set-a-date-as-input-in-java
+				// Following section referenced and inspired by 
+				//https://stackoverflow.com/questions/27580655/how-to-set-a-date-as-input-in-java
 
 				String date = null;
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
@@ -90,6 +94,10 @@ public class createStaffRequest
 							}
 
 					} while (date == null);
+			
+				//END OVERFLOW SECTION
+			
+				//need to enter time as well but could not for the life of me figure out how to do or add to date value above!!?!!?
 
 				System.out.println(reqDate);
 				
@@ -97,8 +105,6 @@ public class createStaffRequest
 				String reqLocation = scan.next();
 
 				System.out.println(reqLocation);
-
-				// Need to work out time variable.
 				
 				System.out.println("How many people do you need?: ");
 				int reqStaffNumber = scan.nextInt();
@@ -116,6 +122,7 @@ public class createStaffRequest
 				// The system validates if preferred candidates are available
 				// for job. **DONT KNOW IF THIS WILL BE ACHIEVABLE FOR SATURDAY
 				// The actor inputs comments.
+			
 				// From here, the “Submit Request” use case takes over.
 
 			}
