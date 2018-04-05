@@ -1,12 +1,15 @@
-package Module;
+package a1;
 
-public class Login {
-public static void main(String[] args)
+import java.io.File;
+import java.util.Scanner;
+
+public class LoginTest
+{
+
+	public static void main(String[] args)
 	{
-		// Scanner scan = new Scanner (new File("accounts.txt"));
-
+		String filepath = "accounts.txt";
 		Scanner scan = new Scanner(System.in);
-
 		String username;
 		String password;
 
@@ -17,12 +20,42 @@ public static void main(String[] args)
 		System.out.println("Enter Password: ");
 		password = scan.nextLine();
 
-		StaffAccounts check = new StaffAccounts(username, password);
+		testLogin(username, password, filepath);
 
-		
-		if (check.login())
-		System.out.println("You are logged in");
+	}
 
+	private static Scanner x;
+
+	public static void testLogin(String username, String password, String filepath)
+	{
+		boolean found = false;
+		String usernameInp = "";
+		String passwordInp = "";
+
+		try
+		{
+			x = new Scanner(new File(filepath));
+			x.useDelimiter("[,\n]");
+
+			while (x.hasNextLine() && !found)
+			{
+				usernameInp = x.next();
+				passwordInp = x.next();
+
+				if (usernameInp.trim().equals(username.trim()) && passwordInp.trim().equals(password.trim()))
+				{
+					found = true;
+					System.out.println("User Logged In");
+				}
+
+			}
+			x.close();
+		}
+
+		catch (Exception e)
+		{
+			System.out.println("Username or Password wrong, Try again");
+		}
 	}
 
 }
