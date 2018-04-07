@@ -7,25 +7,47 @@ import java.util.*;
 public class createStaffRequest
 	{
 
-		public static void main(String[] args)
+		// to be confirmed: private String reqID;
+		// to be confirmed: private Date reqCreateDate;
+		// to be confirmed: private String reqOwner;
+		private String reqCourseID;
+		private String reqJobTitle;
+		private String reqLocation;
+		private String reqTime;
+		private double reqDuration;
+		private Date reqDate;
+		private int reqStaffNumber;
+		private String[] staffPreferences;
+		private String reqComment;
+		// tobeconfirmed: private String reqStatus;
+		// tobeconfirmed: private double reqCost;
+
+		public createStaffRequest(String reqCourseID, String reqJobTitle, String reqLocation, double reqDuration,
+				Date reqDate, int reqStaffNumber, String reqComment)
 			{
-				
-				//**NEED TO CREATE REQUEST CONSTRUCTOR AND ASSIGN USER INPUT TO OBJECT**
+				this.reqCourseID = reqCourseID;
+				this.reqJobTitle = reqJobTitle;
+				this.reqLocation = reqLocation;
+				this.reqDuration = reqDuration;
+				this.reqDate = reqDate;
+				this.reqStaffNumber = reqStaffNumber;
+				this.reqComment = reqComment;
+			}
+
+		public createStaffRequest()
+			{
+
 				@SuppressWarnings("resource")
 				Scanner scan = new Scanner(System.in);
 
 				// System needs to allocate reqownerID and req timestamp to
-				// request, not sure how to achieve this.
+				// request
 
 				System.out.println("Create Staff Request");
-				//user enters course ID
 				System.out.println("Enter Course: ");
-				String reqCourseID = scan.nextLine();
+				this.reqCourseID = scan.nextLine();
 
-				String reqJobTitle = "";
-				
-				//user selects job title
-				// Following section referenced and inspired by https://stackoverflow.com/questions/20681616/java-creating-a-menu-loop
+				// https://stackoverflow.com/questions/20681616/java-creating-a-menu-loop
 				// set choiceentry to -1, this will make it to enter while loop
 				int choiceentry = -1;
 
@@ -44,22 +66,22 @@ public class createStaffRequest
 				switch (choiceentry)
 					{
 					case 1:
-						reqJobTitle = "labAssist";
+						this.reqJobTitle = "labAssist";
 						break;
 					case 2:
-						reqJobTitle = "lectAssist";
+						this.reqJobTitle = "lectAssist";
 						break;
 					case 3:
-						reqJobTitle = "markAssist";
+						this.reqJobTitle = "markAssist";
 						break;
 					case 4:
-						reqJobTitle = "tutSub";
+						this.reqJobTitle = "tutSub";
 						break;
 					case 5:
-						reqJobTitle = "lecSub";
+						this.reqJobTitle = "lecSub";
 						break;
 					case 6:
-						reqJobTitle = "other";
+						this.reqJobTitle = "other";
 						break;
 					}
 
@@ -67,15 +89,13 @@ public class createStaffRequest
 
 				System.out.println(reqJobTitle);
 
-				//user enters date, not 100% sure about this approach
 				// https://coderanch.com/t/598292/java/date-input-user-java
 
-				// Following section referenced and inspired by 
-				//https://stackoverflow.com/questions/27580655/how-to-set-a-date-as-input-in-java
+				// https://stackoverflow.com/questions/27580655/how-to-set-a-date-as-input-in-java
 
 				String date = null;
 				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-				Date reqDate = null;
+				this.reqDate = null;
 
 				do
 					{
@@ -86,7 +106,7 @@ public class createStaffRequest
 						try
 							{
 								// Parsing the String
-								reqDate = dateFormat.parse(date);
+								this.reqDate = dateFormat.parse(date);
 							} catch (ParseException e)
 							{
 								System.out.println("Invalid Date Format");
@@ -94,36 +114,39 @@ public class createStaffRequest
 							}
 
 					} while (date == null);
-			
-				//END OVERFLOW SECTION
-			
-				//need to enter time as well but could not for the life of me figure out how to do or add to date value above!!?!!?
 
-				System.out.println(reqDate);
-				
+				// end stack overflow section
+
+				System.out.println(this.reqDate);
+
 				System.out.println("Enter Location (BUILDING.LEVEL.ROOM:) ");
-				String reqLocation = scan.next();
+				this.reqLocation = scan.next();
 
 				System.out.println(reqLocation);
+
+				System.out.println("Enter start time:'00:00am/pm");
+				this.reqTime = scan.next();
 				
+				System.out.println("How long do you need the staff for? (Enter in hours '0.00': ");
+				this.reqDuration = scan.nextDouble();
+
 				System.out.println("How many people do you need?: ");
-				int reqStaffNumber = scan.nextInt();
+				this.reqStaffNumber = scan.nextInt();
 				
-				//Create array of staff preferences base on size of reqStaffNumber. Enter names from there using iteration through for loop.
+
+				staffPreferences = new String[this.reqStaffNumber];
 				
+				
+				for(int i = 0; i<staffPreferences.length; i++){
+					System.out.println("Enter Staff Preference No. " + (i+1) + "(if you do not have any preferences, type 'NA')");
+					staffPreferences[i] = scan.next();
+					
+				}
+
 				System.out.println("Enter Comments (optional):");
-				String reqComments = scan.next();
-				
-				
-				
-				
-				
-				
-				// The system validates if preferred candidates are available
-				// for job. **DONT KNOW IF THIS WILL BE ACHIEVABLE FOR SATURDAY
-				// The actor inputs comments.
-			
-				// From here, the “Submit Request” use case takes over.
+				this.reqComment = scan.next();
+
+				//boogey requested final software tells request owner if staff is available at time requested or not.
 
 			}
 
